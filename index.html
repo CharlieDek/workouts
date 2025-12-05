@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Park Workout</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    body {
+      margin: 8px;
+      font-family: system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.3;
+    }
+    h1 {
+      font-size: 16px;
+      margin: 4px 0;
+    }
+    h2 {
+      font-size: 14px;
+      margin: 8px 0 4px;
+    }
+    ul {
+      margin: 4px 0;
+      padding-left: 18px;
+    }
+    small {
+      color: #666;
+    }
+    section {
+      margin-top: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="top">
+    <h1 id="workoutTitle"></h1>
+    <ul id="mainList"></ul>
+    <small id="dayLabel"></small>
+  </div>
+
+  <section>
+    <ul>
+      <li><b>Pull</b>: Pullups / assisted pullups on bar.</li>
+      <li><b>Row</b>: Body rows under parallel or sloping bars.</li>
+      <li><b>Hang core</b>: Hanging knee/leg raises or just dead hang.</li>
+      <li><b>Push</b>: Pushups on ground or angled bar.</li>
+      <li><b>Dips</b>: Parallel bar dips or assisted dips with feet.</li>
+      <li><b>Step-ups</b>: Step onto pad, stand tall, step down.</li>
+      <li><b>Split squats</b>: One leg forward, one back, bend both knees.</li>
+      <li><b>Plank</b>: Forearms or hands on ground, straight body.</li>
+      <li><b>Hollow hold</b>: On back, ribs down, legs/shoulders slightly up.</li>
+      <li><b>Calf raises</b>: Lift heels up and down on a pad/edge.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>harder</h2>
+    <ul>
+      <li>Add backpack weight when things feel “easy”.</li>
+      <li>Use lower bars / more horizontal body for rows.</li>
+      <li>Feet-elevated pushups; deeper dips (pain-free range).</li>
+      <li>Slower lowers (3-4s down) on most reps.</li>
+      <li>More rounds or 1-2 extra reps (but still clean form).</li>
+    </ul>
+  </section>
+
+  <script>
+    (function () {
+      // Three rotating workouts: A (pull/core), B (push/legs), C (mixed/light)
+    var workouts = [
+    {
+        title: "W1 - Pull / Core",
+        items: [
+        "Warmup 5 min: walk, arm circles, squats, easy push.",
+        "Circuit 1 ×4: Pull 4-6 (goal 8), Row 8-10, Hang knee raise 6-10, rest 60-90s.",
+        "Circuit 2 ×3: Step-ups 10/leg, Plank 30-45s, Push 10-12."
+        ]
+    },
+    {
+        title: "W2 - Push / Legs",
+        items: [
+        "Warmup 5 min: walk, leg swings, arm circles, squats.",
+        "Circuit 1 ×4: Dip 5-8 (goal 10), Push 10-12, Split squat 8-10/leg, rest 60-90s.",
+        "Circuit 2 ×3: L-sit 10-20s, Hollow 25-35s, Calf raises 15-20."
+        ]
+    },
+    {
+        title: "W3 - Full Body",
+        items: [
+        "Warmup 5 min: jog, circles, squats, easy pull.",
+        "Circuit 1 ×4: Pull 4-5, Dip 5-6, Box jump 6-8, rest 60s.",
+        "Circuit 2 ×3: Push 10-12, Row 10-12, Plank 30s, Hang 20-30s."
+        ]
+    },
+    {
+        title: "W4 - Pull Strength",
+        items: [
+        "Warmup 5 min: hang 30s, arm circles, easy rows.",
+        "Circuit 1 ×5: Pull 3-5 slow (3s down), rest 90-120s. Goal: 5×5.",
+        "Circuit 2 ×3: Row 10-12, Active hang 30-40s, Leg raise 8-10."
+        ]
+    },
+    {
+        title: "W5 - Push Strength",
+        items: [
+        "Warmup 5 min: walk, push-up flow, arm circles.",
+        "Circuit 1 ×5: Dip 4-6 slow (3s down), rest 90-120s. Goal: 5×6.",
+        "Circuit 2 ×3: Push 12-15, Feet-elevated push 6-10, Support hold 20-30s."
+        ]
+    },
+    {
+        title: "W6 - Legs / Power",
+        items: [
+        "Warmup 5 min: walk, leg swings, deep squat holds.",
+        "Circuit 1 ×4: Box jump 6-8, Step-up high 10-12/leg, Bulgarian split 8/leg.",
+        "Circuit 2 ×3: Calf raise 20-25, Push 8-10, Row 8-10."
+        ]
+    },
+    {
+        title: "W7 - Core / Skill",
+        items: [
+        "Warmup 5 min: hang, plank, easy push.",
+        "Circuit 1 ×4: L-sit 15-25s (goal 30s), Hang leg raise 8-10, Hollow 30-40s.",
+        "Circuit 2 ×3: Pull 4-5, Dip 4-5, Archer push 4-6/side."
+        ]
+    },
+    {
+        title: "W8 - Power Circuit",
+        items: [
+        "Warmup 5 min: jog, arm circles, jump squats.",
+        "Circuit 1 ×5: Explosive pull 3-4, Clap push 5-8, Box jump 6-8, rest 60s.",
+        "Circuit 2 ×3: Dip 6-8, Row 8-10, Step-up fast 8/leg."
+        ]
+    },
+    {
+        title: "W9 - Active Recovery",
+        items: [
+        "Warmup: 5 min easy walk, stretch.",
+        "Circuit 1 ×3: Easy pull 3, Dead hang 30s, Easy push 6-8, rest as needed.",
+        "Circuit 2 ×3: Easy step-up 6/leg, Easy row 6, Stretch 45s. Stay loose."
+        ]
+    }
+    ];
+
+      var today = new Date();
+      var idx = (today.getDate() - 1) % 9;
+      var w = workouts[idx];
+
+      document.getElementById("workoutTitle").textContent = w.title;
+
+      var list = document.getElementById("mainList");
+      for (var i = 0; i < w.items.length; i++) {
+        var li = document.createElement("li");
+        li.textContent = w.items[i];
+        list.appendChild(li);
+      }
+
+      document.getElementById("dayLabel").textContent = today.toDateString();
+    })();
+  </script>
+</body>
+</html>
